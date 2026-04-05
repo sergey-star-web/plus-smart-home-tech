@@ -1,6 +1,6 @@
 package ru.practicum.enums;
 
-public enum DeviceEventType {
+public enum HubEventType {
     DEVICE_ADDED,
     DEVICE_REMOVED,
     SCENARIO_ADDED,

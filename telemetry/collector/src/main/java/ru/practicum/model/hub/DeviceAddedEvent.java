@@ -1,17 +1,18 @@
 package ru.practicum.model.hub;
 
-import ru.practicum.enums.DeviceEventType;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import ru.practicum.enums.DeviceType;
+import ru.practicum.enums.HubEventType;
 
 @Getter @Setter @ToString(callSuper = true)
 public class DeviceAddedEvent extends HubEvent {
     private String id;
-    private String deviceType;
+    private DeviceType deviceType;
 
     @Override
-    public DeviceEventType getType() {
-        return DeviceEventType.DEVICE_ADDED;
+    public HubEventType getType() {
+        return HubEventType.DEVICE_ADDED;
     }
 }

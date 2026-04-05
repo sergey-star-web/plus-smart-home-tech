@@ -75,7 +75,7 @@ protocol HubEventProtocol {
         // Главная запись события в хабе
         record HubEventAvro {
             string hub_id;
-            long timestamp; // timestamp_ms
+            timestamp_ms timestamp;
             union {
                 DeviceAddedEventAvro,
                 DeviceRemovedEventAvro,

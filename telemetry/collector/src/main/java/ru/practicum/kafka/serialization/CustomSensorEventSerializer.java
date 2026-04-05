@@ -1,4 +1,4 @@
-package ru.practicum.kafka.serialixation;
+package ru.practicum.kafka.serialization;
 
 
 import lombok.extern.slf4j.Slf4j;
