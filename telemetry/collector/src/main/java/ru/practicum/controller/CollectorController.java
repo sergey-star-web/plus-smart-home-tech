@@ -2,6 +2,7 @@ package ru.practicum.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import ru.practicum.kafka.KafkaProducerService;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.mapper.HubEventMapper;
@@ -17,7 +18,7 @@ public class CollectorController {
     private final KafkaProducerService kafkaProducerService;
 
     @PostMapping("/sensors")
-    public void collectSensorEvent(@RequestBody SensorEvent event) {
+    public ResponseEntity<?> collectSensorEvent(@RequestBody SensorEvent event) {
         System.out.println("Received sensor event: " + event);
         try {
             var avroEvent = SensorEventMapper.toAvro(event);
@@ -26,10 +27,11 @@ public class CollectorController {
             log.error("Error processing sensor event: {}", event.toString(), e);
             throw e;
         }
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/hubs")
-    public void collectHubEvent(@RequestBody HubEvent hubEvent) {
+    public ResponseEntity<?> collectHubEvent(@RequestBody HubEvent hubEvent) {
         System.out.println("Received hub event: " + hubEvent);
         try {
             var avroEvent = HubEventMapper.toAvro(hubEvent);
@@ -38,5 +40,6 @@ public class CollectorController {
             log.error("Error processing hub event: {}", hubEvent.toString(), e);
             throw e;
         }
+        return ResponseEntity.ok().build();
     }
 }
