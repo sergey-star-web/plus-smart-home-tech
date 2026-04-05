@@ -7,7 +7,7 @@ import ru.practicum.enums.HubEventType;
 
 import java.util.List;
 
-@Getter @Setter @ToString(callSuper = true)
+@Getter @Setter @ToString
 public class ScenarioAddedEvent extends HubEvent {
     private String name;
     private List<ScenarioCondition> conditions;

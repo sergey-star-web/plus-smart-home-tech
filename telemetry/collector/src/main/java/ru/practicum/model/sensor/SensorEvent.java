@@ -3,7 +3,6 @@ package ru.practicum.model.sensor;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import ru.practicum.enums.SensorEventType;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,8 +11,7 @@ import java.time.Instant;
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.EXISTING_PROPERTY,
-        property = "type",
-        defaultImpl = SensorEventType.class
+        property = "type"
 )
 @JsonSubTypes({
         @JsonSubTypes.Type(value = ClimateSensorEvent.class, name = "CLIMATE_SENSOR_EVENT"),
@@ -26,9 +24,7 @@ import java.time.Instant;
 @Setter
 @ToString
 public abstract class SensorEvent {
-    @NotBlank
     private String id;
-    @NotBlank
     private String hubId;
     private Instant timestamp = Instant.now();
 

@@ -6,7 +6,7 @@ import lombok.ToString;
 import ru.practicum.enums.DeviceType;
 import ru.practicum.enums.HubEventType;
 
-@Getter @Setter @ToString(callSuper = true)
+@Getter @Setter @ToString
 public class DeviceAddedEvent extends HubEvent {
     private String id;
     private DeviceType deviceType;

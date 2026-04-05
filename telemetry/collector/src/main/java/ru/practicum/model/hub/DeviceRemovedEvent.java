@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 import ru.practicum.enums.HubEventType;
 
-@Getter @Setter @ToString(callSuper = true)
+@Getter @Setter @ToString
 public class DeviceRemovedEvent extends HubEvent {
     private String id;
 

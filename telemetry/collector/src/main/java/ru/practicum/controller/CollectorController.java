@@ -20,10 +20,7 @@ public class CollectorController {
     public void collectSensorEvent(@RequestBody SensorEvent event) {
         System.out.println("Received sensor event: " + event);
         try {
-            log.debug("Starting sensor event mapping to Avro...");
             var avroEvent = SensorEventMapper.toAvro(event);
-            log.debug("Sensor event mapped successfully to Avro");
-            log.info("Sending sensor event to Kafka...");
             kafkaProducerService.sendSensorEvent(avroEvent);
         } catch (Exception e) {
             log.error("Error processing sensor event: {}", event.toString(), e);
@@ -35,10 +32,7 @@ public class CollectorController {
     public void collectHubEvent(@RequestBody HubEvent hubEvent) {
         System.out.println("Received hub event: " + hubEvent);
         try {
-            log.debug("Starting hub event mapping to Avro...");
             var avroEvent = HubEventMapper.toAvro(hubEvent);
-            log.debug("Hub event mapped successfully to Avro");
-            log.info("Sending hub event to Kafka...");
             kafkaProducerService.sendHubEvent(avroEvent);
         } catch (Exception e) {
             log.error("Error processing hub event: {}", hubEvent.toString(), e);
