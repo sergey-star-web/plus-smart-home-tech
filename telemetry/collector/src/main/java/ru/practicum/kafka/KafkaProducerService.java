@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.stereotype.Service;
-import ru.yandex.practicum.kafka.telemetry.enums.HubEventAvro;
-import ru.yandex.practicum.kafka.telemetry.enums.SensorEventAvro;
+import ru.yandex.practicum.kafka.telemetry.event.HubEventAvro;
+import ru.yandex.practicum.kafka.telemetry.event.SensorEventAvro;
 
 @Slf4j
 @Service

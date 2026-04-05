@@ -3,9 +3,7 @@ package ru.practicum.mapper;
 import lombok.extern.slf4j.Slf4j;
 import ru.practicum.enums.*;
 import ru.practicum.model.hub.*;
-import ru.yandex.practicum.kafka.telemetry.enums.*;
-
-import static ru.yandex.practicum.kafka.telemetry.enums.DeviceTypeAvro.*;
+import ru.yandex.practicum.kafka.telemetry.event.*;
 
 @Slf4j
 public class HubEventMapper {
@@ -97,7 +95,7 @@ public class HubEventMapper {
     private static DeviceTypeAvro mapDeviceType(DeviceType type) {
         log.debug("Mapping DeviceType: {} -> Avro", type);
         return switch (type) {
-            case MOTION_SENSOR -> MOTION_SENSOR;
+            case MOTION_SENSOR -> DeviceTypeAvro.MOTION_SENSOR;
             case TEMPERATURE_SENSOR -> DeviceTypeAvro.TEMPERATURE_SENSOR;
             case LIGHT_SENSOR -> DeviceTypeAvro.LIGHT_SENSOR;
             case CLIMATE_SENSOR -> DeviceTypeAvro.CLIMATE_SENSOR;

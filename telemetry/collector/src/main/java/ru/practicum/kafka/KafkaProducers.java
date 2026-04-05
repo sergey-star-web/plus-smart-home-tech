@@ -7,8 +7,8 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.stereotype.Component;
 import ru.practicum.kafka.serialization.CustomHubEventSerializer;
-import ru.yandex.practicum.kafka.telemetry.enums.HubEventAvro;
-import ru.yandex.practicum.kafka.telemetry.enums.SensorEventAvro;
+import ru.yandex.practicum.kafka.telemetry.event.HubEventAvro;
+import ru.yandex.practicum.kafka.telemetry.event.SensorEventAvro;
 
 import java.util.Properties;
 

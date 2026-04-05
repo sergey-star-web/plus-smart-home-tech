@@ -3,7 +3,7 @@ package ru.practicum.mapper;
 import lombok.extern.slf4j.Slf4j;
 import ru.practicum.enums.SensorEventType;
 import ru.practicum.model.sensor.*;
-import ru.yandex.practicum.kafka.telemetry.enums.*;
+import ru.yandex.practicum.kafka.telemetry.event.*;
 
 @Slf4j
 public class SensorEventMapper {
