@@ -17,29 +17,35 @@ import ru.practicum.model.sensor.SensorEvent;
 public class CollectorController {
     private final KafkaProducerService kafkaProducerService;
 
-    @PostMapping("/sensors")
-    public ResponseEntity<?> collectSensorEvent(@RequestBody SensorEvent event) {
-        System.out.println("Received sensor event: " + event);
-        try {
-            var avroEvent = SensorEventMapper.toAvro(event);
-            kafkaProducerService.sendSensorEvent(avroEvent);
-        } catch (Exception e) {
-            log.error("Error processing sensor event: {}", event.toString(), e);
-            throw e;
-        }
-        return ResponseEntity.ok().build();
-    }
-
     @PostMapping("/hubs")
-    public ResponseEntity<?> collectHubEvent(@RequestBody HubEvent hubEvent) {
-        System.out.println("Received hub event: " + hubEvent);
+    public void collectHub(@RequestBody HubEvent hubEvent) {
+        log.info("=== Received hub event ===");
+        log.info("Event: {}", hubEvent);
         try {
+            log.debug("Starting hub event mapping to Avro...");
             var avroEvent = HubEventMapper.toAvro(hubEvent);
+            log.debug("Hub event mapped successfully to Avro");
+            log.info("Sending hub event to Kafka...");
             kafkaProducerService.sendHubEvent(avroEvent);
         } catch (Exception e) {
             log.error("Error processing hub event: {}", hubEvent.toString(), e);
             throw e;
         }
-        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/sensors")
+    public void collectSensor(@RequestBody SensorEvent sensorEvent) {
+        log.info("=== Received sensor event ===");
+        log.info("Event: {}", sensorEvent);
+        try {
+            log.debug("Starting sensor event mapping to Avro...");
+            var avroEvent = SensorEventMapper.toAvro(sensorEvent);
+            log.debug("Sensor event mapped successfully to Avro");
+            log.info("Sending sensor event to Kafka...");
+            kafkaProducerService.sendSensorEvent(avroEvent);
+        } catch (Exception e) {
+            log.error("Error processing sensor event: {}", sensorEvent.toString(), e);
+            throw e;
+        }
     }
 }
