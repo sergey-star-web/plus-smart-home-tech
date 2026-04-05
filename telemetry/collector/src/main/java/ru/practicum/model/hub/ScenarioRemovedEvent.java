@@ -1,6 +1,6 @@
-package model.hub;
+package ru.practicum.model.hub;
 
-import enums.DeviceEventType;
+import ru.practicum.enums.DeviceEventType;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

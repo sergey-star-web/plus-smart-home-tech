@@ -1,6 +1,6 @@
-package model.sensor;
+package ru.practicum.model.sensor;
 
-import enums.SensorEventType;
+import ru.practicum.enums.SensorEventType;
 import lombok.*;
 
 @Getter @Setter @ToString(callSuper = true)

@@ -1,4 +1,4 @@
-package enums;
+package ru.practicum.enums;
 
 public enum SensorEventType {
     CLIMATE_SENSOR_EVENT,

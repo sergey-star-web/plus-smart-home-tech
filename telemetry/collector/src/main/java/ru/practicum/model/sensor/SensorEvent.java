@@ -1,8 +1,8 @@
-package model.sensor;
+package ru.practicum.model.sensor;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import enums.SensorEventType;
+import ru.practicum.enums.SensorEventType;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;

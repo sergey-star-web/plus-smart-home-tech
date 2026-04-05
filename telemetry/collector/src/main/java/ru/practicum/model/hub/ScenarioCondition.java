@@ -1,4 +1,4 @@
-package model.hub;
+package ru.practicum.model.hub;
 
 import lombok.Getter;
 import lombok.Setter;

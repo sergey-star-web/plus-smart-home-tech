@@ -1,4 +1,4 @@
-package enums;
+package ru.practicum.enums;
 
 public enum DeviceEventType {
     DEVICE_ADDED,

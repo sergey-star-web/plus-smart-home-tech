@@ -1,8 +1,8 @@
-package model.hub;
+package ru.practicum.model.hub;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import enums.DeviceEventType;
+import ru.practicum.enums.DeviceEventType;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
