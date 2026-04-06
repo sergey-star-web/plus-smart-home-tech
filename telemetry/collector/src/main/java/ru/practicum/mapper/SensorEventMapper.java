@@ -103,36 +103,6 @@ public class SensorEventMapper {
         log.info("Successfully mapped SensorEvent to Avro: type={}, id={}, hubId={}",
                 event.getType(), result.getId(), result.getHubId());
 
-        if (result.getPayload() != null) {
-            log.debug("Payload details: {}", result.getPayload());
-
-            // Если это ClimateSensorAvro
-            if (result.getPayload() instanceof ClimateSensorAvro climate) {
-                log.info("Climate payload: temperatureC={}, humidity={}, co2Level={}",
-                        climate.getTemperatureC(), climate.getHumidity(), climate.getCo2Level());
-            }
-            // Если это LightSensorAvro
-            else if (result.getPayload() instanceof LightSensorAvro light) {
-                log.info("Light payload: linkQuality={}, luminosity={}",
-                        light.getLinkQuality(), light.getLuminosity());
-            }
-            // Если это MotionSensorAvro
-            else if (result.getPayload() instanceof MotionSensorAvro motion) {
-                log.info("Motion payload: linkQuality={}, motion={}, voltage={}",
-                        motion.getLinkQuality(), motion.getMotion(), motion.getVoltage());
-            }
-            // Если это SwitchSensorAvro
-            else if (result.getPayload() instanceof SwitchSensorAvro switchSensor) {
-                log.info("Switch payload: state={}", switchSensor.getState());
-            }
-            // Если это TemperatureSensorAvro
-            else if (result.getPayload() instanceof TemperatureSensorAvro temp) {
-                log.info("Temperature payload: id={}, hubId={}, timestamp={}, tempC={}, tempF={}",
-                        temp.getId(), temp.getHubId(), temp.getTimestamp(),
-                        temp.getTemperatureC(), temp.getTemperatureF());
-            }
-        }
-
         return result;
     }
 }

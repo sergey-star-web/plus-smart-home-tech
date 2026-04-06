@@ -12,40 +12,21 @@ import ru.yandex.practicum.kafka.telemetry.event.SensorEventAvro;
 @RequiredArgsConstructor
 public class KafkaProducerService {
     private final KafkaProducers producers;
+    private final KafkaProducerConfig kafkaProducerConfig;
 
     public void sendSensorEvent(SensorEventAvro event) {
         String key = event.getHubId();
-
+        String topic = kafkaProducerConfig.getSensorTopic();
         ProducerRecord<String, SensorEventAvro> record =
-                new ProducerRecord<>("telemetry.sensors.v1", key, event);
-
-        producers.sensor().send(record, (metadata, ex) -> {
-            if (ex == null) {
-                log.info("Sensor event sent: topic={}, partition={}, offset={}",
-                        metadata.topic(),
-                        metadata.partition(),
-                        metadata.offset());
-            } else {
-                log.error("Failed to send sensor event", ex);
-            }
-        });
+                new ProducerRecord<>(topic, key, event);
+        producers.sensor().send(record);
     }
 
     public void sendHubEvent(HubEventAvro event) {
         String key = event.getHubId();
-
+        String topic = kafkaProducerConfig.getHubTopic();
         ProducerRecord<String, HubEventAvro> record =
-                new ProducerRecord<>("telemetry.hubs.v1", key, event);
-
-        producers.hub().send(record, (metadata, ex) -> {
-            if (ex == null) {
-                log.info("Hub event sent: topic={}, partition={}, offset={}",
-                        metadata.topic(),
-                        metadata.partition(),
-                        metadata.offset());
-            } else {
-                log.error("Failed to send hub event", ex);
-            }
-        });
+                new ProducerRecord<>(topic, key, event);
+        producers.hub().send(record);
     }
 }

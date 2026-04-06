@@ -15,9 +15,8 @@ import java.util.Properties;
 
 @Component
 public class KafkaProducers {
-
-    private KafkaProducer<String, SensorEventAvro> sensorProducer;
-    private KafkaProducer<String, HubEventAvro> hubProducer;
+    private KafkaProducerWrapper<String, SensorEventAvro> sensorProducer;
+    private KafkaProducerWrapper<String, HubEventAvro> hubProducer;
 
     @PostConstruct
     public void init() {
@@ -26,23 +25,23 @@ public class KafkaProducers {
         sensorProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         sensorProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         sensorProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, CustomSensorEventSerializer.class);
-
-        sensorProducer = new KafkaProducer<>(sensorProps);
+        KafkaProducer<String, SensorEventAvro> sensorKafkaProducer = new KafkaProducer<>(sensorProps);
+        sensorProducer = new KafkaProducerWrapper<>(sensorKafkaProducer);
 
         // Hub
         Properties hubProps = new Properties();
         hubProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         hubProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         hubProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, CustomHubEventSerializer.class);
-
-        hubProducer = new KafkaProducer<>(hubProps);
+        KafkaProducer<String, HubEventAvro> hubKafkaProducer = new KafkaProducer<>(hubProps);
+        hubProducer = new KafkaProducerWrapper<>(hubKafkaProducer);
     }
 
-    public KafkaProducer<String, SensorEventAvro> sensor() {
+    public KafkaProducerWrapper<String, SensorEventAvro> sensor() {
         return sensorProducer;
     }
 
-    public KafkaProducer<String, HubEventAvro> hub() {
+    public KafkaProducerWrapper<String, HubEventAvro> hub() {
         return hubProducer;
     }
 
