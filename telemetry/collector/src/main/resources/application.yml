@@ -1,15 +1,14 @@
 spring:
   kafka:
     bootstrap-servers: localhost:9092
-
     producer:
-      sensorTopic: telemetry.sensors.v1
-      hubTopic: telemetry.hubs.v1
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: ru.practicum.kafka.serialization.CustomSensorEventSerializer
       properties:
         enable-idempotence: false
         acks: all
+    sensorTopic: telemetry.sensors.v1
+    hubTopic: telemetry.hubs.v1
 
 logging:
   level:

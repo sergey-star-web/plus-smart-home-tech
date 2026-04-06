@@ -1,7 +1,5 @@
 package ru.practicum.kafka.serialization;
 
-//C:\LearnJava\SPRINT19\plus-smart-home-tech\telemetry.serialization.avro-schemas.serialization
-
 import lombok.extern.slf4j.Slf4j;
 import org.apache.avro.io.BinaryEncoder;
 import org.apache.avro.io.DatumWriter;
