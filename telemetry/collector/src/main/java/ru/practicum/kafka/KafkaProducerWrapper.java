@@ -4,6 +4,7 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.time.Duration;
 
 public class KafkaProducerWrapper<K, V> implements AutoCloseable {
     private static final Logger log = LoggerFactory.getLogger(KafkaProducerWrapper.class);
@@ -24,14 +25,14 @@ public class KafkaProducerWrapper<K, V> implements AutoCloseable {
                 log.error("Ошибка отправки", ex);
             }
         });
-        producer.flush(); // немедленная отправка
+        producer.flush();
     }
 
     @Override
     public void close() {
         try {
             producer.flush();
-            producer.close();
+            producer.close(Duration.ofSeconds(5));
             log.info("KafkaProducer закрыт");
         } catch (Exception e) {
             log.error("Ошибка при закрытии KafkaProducer", e);
