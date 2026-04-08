@@ -45,7 +45,6 @@ public class CollectorGrpcController extends CollectorControllerGrpc.CollectorCo
     @Override
     public void collectHubEvent(HubEventProto request, StreamObserver<Empty> responseObserver) {
         log.info("Hub id: {}", request.getHubId());
-        log.info("Timestamp: {}", request.getTimestamp());
 
         if (request.hasDeviceAddedEvent()) {
             log.info("Device added: {}", request.getDeviceAddedEvent().getId());
